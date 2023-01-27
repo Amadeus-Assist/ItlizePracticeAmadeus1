@@ -1,0 +1,41 @@
+﻿@model List<DAL_Layer.Models.UserModel>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ShowAllUsers</title>
+</head>
+<body>
+    <div>
+        <h4>All Users</h4>
+        <hr />
+        <table class="allUserTable">
+            <tr>
+                <th>ID</th>
+                <th>USERNAME</th>
+                <th>PASSWORD</th>
+                <th>EMAIL</th>
+            </tr>
+    
+            @foreach(DAL_Layer.Models.UserModel user in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(model => user.Id)</td>
+                    <td>@Html.DisplayFor(model => user.UserName)</td>
+                    <td>@Html.DisplayFor(model => user.Password) </td>
+                    <td>@Html.DisplayFor(model => user.Email)</td>
+                </tr>
+            }
+        </table>
+    </div>
+    <p>
+        @Html.ActionLink("Back to Home", "Index")
+    </p>
+</body>
+</html>
