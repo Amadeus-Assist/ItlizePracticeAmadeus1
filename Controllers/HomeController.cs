@@ -1,5 +1,5 @@
 ﻿using BLL_Layer;
-using DAL_Layer.Models;
+using DAL_Layer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +14,7 @@ namespace WebApplication1.Controllers
         private BLL_LayerClass _bllLayer;
 
         public HomeController() {
-            string connStr = System.Configuration.ConfigurationManager.AppSettings["NormalTestDBConnectionString"];
-            _bllLayer = new BLL_LayerClass(connStr);
+            _bllLayer = new BLL_LayerClass();
         }
 
         public ActionResult Index(bool redirect=false)
@@ -31,11 +30,11 @@ namespace WebApplication1.Controllers
 
                 return RedirectToAction("Index", new {redirect = true});
             }
-            bool success = _bllLayer.AddNewUser(new UserModel 
+            bool success = _bllLayer.AddNewUser(new DAL_Layer.USERINFO 
             {
-                UserName = data.UserName,
-                Password = data.Password,
-                Email = data.Email }
+                USERNAME = data.UserName,
+                PASSWORD = data.Password,
+                EMAIL = data.Email }
             );
             if (!success)
             {
@@ -47,7 +46,7 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public ActionResult ShowAllUsers() 
         {
-            List<UserModel> users = _bllLayer.GetAllUsers();
+            List<USERINFO> users = _bllLayer.GetAllUsers();
             return View(users);
         }
     }

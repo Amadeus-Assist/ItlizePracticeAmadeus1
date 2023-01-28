@@ -1,4 +1,4 @@
-﻿@model List<DAL_Layer.Models.UserModel>
+﻿@model List<DAL_Layer.USERINFO>
 
 @{
     Layout = null;
@@ -23,13 +23,13 @@
                 <th>EMAIL</th>
             </tr>
     
-            @foreach(DAL_Layer.Models.UserModel user in Model)
+            @foreach(DAL_Layer.USERINFO user in Model)
             {
                 <tr>
-                    <td>@Html.DisplayFor(model => user.Id)</td>
-                    <td>@Html.DisplayFor(model => user.UserName)</td>
-                    <td>@Html.DisplayFor(model => user.Password) </td>
-                    <td>@Html.DisplayFor(model => user.Email)</td>
+                    <td>@Html.DisplayFor(model => user.ID)</td>
+                    <td>@Html.DisplayFor(model => user.USERNAME)</td>
+                    <td>@Html.DisplayFor(model => user.PASSWORD) </td>
+                    <td>@Html.DisplayFor(model => user.EMAIL)</td>
                 </tr>
             }
         </table>

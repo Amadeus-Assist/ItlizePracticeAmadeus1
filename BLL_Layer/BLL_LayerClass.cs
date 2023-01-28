@@ -1,5 +1,4 @@
 ﻿using DAL_Layer;
-using DAL_Layer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,26 +9,19 @@ namespace BLL_Layer
 {
     public class BLL_LayerClass
     {
-        private string _connStr;
         private DAL_LayerClass _dalLayer;
 
-        public BLL_LayerClass(string connStr)
+        public BLL_LayerClass()
         {
-            _connStr = connStr;
-            _dalLayer = new DAL_LayerClass(connStr);
+            _dalLayer = new DAL_LayerClass();
         }
 
-        public bool AddNewUser(UserModel newUser)
+        public bool AddNewUser(USERINFO newUser)
         {
-            UserModel existUser = _dalLayer.GetUserFromUserName(newUser.UserName);
-            if (existUser != null) 
-            {
-                return false;
-            }
             return _dalLayer.AddUser(newUser);
         }
 
-        public List<UserModel> GetAllUsers() 
+        public List<USERINFO> GetAllUsers() 
         {
             return _dalLayer.GetAllUsers();
         }
